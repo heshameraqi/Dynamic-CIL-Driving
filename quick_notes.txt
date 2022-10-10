@@ -1,0 +1,163 @@
+--------------------------------------------------------------------------------------------------------------
+CARLA Simulator Hints:
+------------------------------------------------------------------------------------------------------------------------
+- Press 'G' to hide HUD to take snapshots
+- The poses to the far right of the map (Poses_Town01.png, ...) indicates a road going up
+- When Git clone (or pull) in the remote DGX server:
+ -- Edit .bashrc by adding:
+    nohup gdown https://drive.google.com/uc?id=1ypq0DqZDpvqw-NWzIJx545YUmvOYmUOS & tail -f nohup.out
+    copy PythonClient folder from CARLA 0.8.2 (important)
+    export CARLA_PATH="/home/heraqi/CARLA_0.8.4_Working_Zones/LinuxNoEditor/"
+    or
+    export CARLA_PATH="/home/heraqi/CARLA_0.8.4/"
+ -- In _deploy.py:
+    Use model_path = '/mnt/sdb1/heraqi/data/int-end-to-end-ad/models/F034BF_AUC2_data_1cam-pgm_4/epoch_22'
+    insetad of the other path
+ -- In _deploy.py, notes regarding the configuration variable start_from_exp_pose:
+    - Experiment to start from: floor( (line no in summary.csv - 2) /25 + 1 )
+    - Pose to start from: (line no in summary.csv - 2) mod 25 + 1
+    -To Select from failed experiments
+        import pandas as pd
+        import numpy as np
+        summary_file = r'C:\Work\Software\int-end-to-end-ad-carla-valeo\_benchmarks_results_papers_official\AUCdata_experiment_F034BF_AUC2_data_1cam-pgm_4_epoch_22_Town02_Our_Route_Planner\summary.csv'
+        df = pd.read_csv(summary_file)
+        failed = np.where(df['result'] == 0)[0]
+        exp = [(f // 25) for f in failed] +1
+        pose = [(f % 25) for f in failed] +1
+
+------------------------------------------------------------------------------------------------------------------------
+Interesting experiments for debugging
+------------------------------------------------------------------------------------------------------------------------
+town1 ex 1 pose 4 Good
+town2 ex 1 pose 2 Good
+town1 ex 1 pose 8 Good
+town1 ex 1 pose 9 Good
+town1 ex 1 pose 16 Good
+
+------------------------------------------------------------------------------------------------------------------------
+Unity and how to build CARLA on Windows x64 (if needed in case of having a remote Linux machine for development and a local Windows machine):
+------------------------------------------------------------------------------------------------------------------------
+- git clone --branch 0.8.4 https://github.com/carla-simulator/carla.git
+- Move the cloned carla directory to C:/carla, because later on when you package project from Unreal Engine you will get 'Filenames too long' errors (fixed in later CARLA versions)
+- Install make from http://gnuwin32.sourceforge.net/packages/make.htm
+  - as bin and dependencies, put dependencies besides the exe, and add the exe to PATH environment variable
+- Install CMake from, and make sure to add it to PATH environment variable
+- Install VS Community 2017 C++ (and enable the x64 Visual C++ Toolset; msvc-14.1), and open "x64 Native Tools Command Prompt for VS 2017 (you will get errors later if you build in x86 by choosing a different CMD)" CMD from Start menu
+- cd C:\carla
+- Follow instructions here: https://carla.readthedocs.io/en/0.8.4/how_to_build_on_windows/
+-- Setup.bat -j 8 --boost-toolset msvc-14.1
+-- Download https://drive.google.com/uc?id=1mFNS-w5atQ45yegiTepRIeKBYVm8N8He, and unzip to ..../Unreal/CarlaUE4/Content
+-- Rebuild.bat (and use this command to recompile any edits done)
+-- Open C:\carla\Unreal\CarlaUE4\CarlaUE4.uproject using Unreal Engine 4.18 (C:\Work\Epic\UE_4.18\Engine\Binaries\Win64\UE4Editor.exe), accept when asked to build dll's
+---- If generating DLL fails run this command:
+     Copy UnrealVersionSelector.exe from 'C:\Program Files (x86)\Epic Games\Launcher\Engine\Binaries\Win64' to the engine binaries folder: 'C:\Work\Epic\UE_4.18\Engine\Binaries\Win64'
+     Run the copied file
+     Open the uproject file using the the copied exe, then close
+     The right click menu will have generate VS project, generate and open it
+     Right click CarlaUE4 and Build, and try to resolve errors
+- Edit maps: update Town01.umap and Town02.umap (or copy them after updating them on Windows machine "Content_Maps_Backup_Working_Zones.7z") to .../Unreal/CarlaUE4/Content/Maps
+  Compile & Play to test, then File->Package Project to generate exe (copy PythonClient folder from any build CARLA besides the exe)
+
+------------------------------------------------------------------------------------------------------------------------
+Build Carla for Linux from the Linux
+------------------------------------------------------------------------------------------------------------------------
+- sudo apt-get install build-essential clang-3.9 git cmake ninja-build python3-requests python-dev tzdata sed curl wget unzip autoconf libtool
+- sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-3.9/bin/clang++ 100
+- sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-3.9/bin/clang 100
+- Build Unreal Engine:
+   git clone --depth=1 -b 4.18 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.18
+   cd ~/UnrealEngine_4.18
+   ./Setup.sh && ./GenerateProjectFiles.sh && make
+- Build CARLA project:
+   In a new folder (cd ..): git clone --branch 0.8.4 https://github.com/carla-simulator/carla.git
+   Download https://drive.google.com/uc?id=1mFNS-w5atQ45yegiTepRIeKBYVm8N8He, and unzip to ..../Unreal/CarlaUE4/Content
+   cd carla && ./Setup.sh
+   UE4_ROOT=/media/heraqi/data/heraqi/UnrealEngine_4.18 ./Rebuild.sh
+- Each time an edit is done, open CARLA project using Unreal Engine, and build project:
+   Update Town01.umap and Town02.umap (or copy them after updating them on Windows machine "Content_Maps_Backup_Working_Zones.7z") to .../Unreal/CarlaUE4/Content/Maps
+   /media/heraqi/data/heraqi/UnrealEngine_4.18/Engine/Binaries/Linux/UE4Editor "/media/heraqi/data/heraqi/carla/Unreal/CarlaUE4/CarlaUE4.uproject"
+   File->Package Project for Linux
+
+------------------------------------------------------------------------------------------------------------------------
+Build Carla for Linux from Windows
+------------------------------------------------------------------------------------------------------------------------
+(not needed if building on the Linux machine directly works which is easier and let us avoid transferring big files between the Windows and the Linux machines)
+- Download Cross-Compiling for Linux Toolchain for the used Unreal Engine version you will use (4.18 in our case) (https://docs.unrealengine.com/en-US/Platforms/Linux/GettingStarted/index.html)
+- Add a new enviorment variable with its path (can be user variable if not admin): LINUX_MULTIARCH_ROOT:C:\UnrealToolchains\v10_clang-5.0.0-centos7\
+- Build Unreal Engine from sources for the version we use 4.18 in our case (connect your Github to Epic Games to see the private rebo) (https://github.com/EpicGames/UnrealEngine/tree/4.18), nice tutorial: https://www.youtube.com/watch?v=WKRi8bZCsFM
+   Download Zip and extract to a short length directory to avoid compilation errors due to long file paths
+   CMD: "Setup.bat" then "GenerateProjectFiles.bat -2017". The number indicates the VS year version
+   Open generate UE4.sln using Visual Studio, right click & Build (make sure that Win64 and Development target is selected)
+   Right clock the .uproject file and "Select Unreal Engine version" to the folder built
+- Reopen the .uproject using that new built vernon, and you find Linux works in the File->Package Project menu
+- File->Package Project for Linux
+
+------------------------------------------------------------------------------------------------------------------------
+Route Planner Documentation
+------------------------------------------------------------------------------------------------------------------------
+Planner Code:
+- Files modified:
+    city_track.py: modified compute_route function to update astar_cells and astar_route for visualization
+    planner.py: modified get_next_command to update far_from_intersection (threshold of 4 used in is_far_away_from_route_intersection, intersections are all graph nodes with more than than 2 edges) for visualization
+        Also, the route planner algorithm is updated (get_next_command function): fixed initialization minor bug, and upgraded the logic
+- Planner creates a city track having a map and astar.
+- Instead of planning on two ways,a one way road is used and the other road is interrupted by adding an artificial wall. (get_wall_source and get_wall_target functions)
+- The map has:
+    - Graph (directed weighted graph, constructed from a town metafile/city_file having grid x and y resolution values)
+    - Nodes grid map created from the graph having walls (list of occupied cells)
+    - Converter: Between World coordinates (CARLA GPS) - Pixel (town top view colored image) - Nodes (graph node or nodes grid map pixel):
+      It uses city_file which has:
+        Line 5: graph_resolution: width and height of the graph or nodes grid map
+        Line 1: worldoffset:      world offset from 0 coordinate
+        Line 4: mapoffset:        map offset from 0 coordinate
+        Line 2: worldrotation:    rotation between world and map coordinates
+        Line 3: not used (map coordinates offsets and scale)
+        pixel_density = 0.1643:   used to convert between Pixel and World coordinates
+        node_density = 50.0:      used to convert between Pixel and Node coordinates
+    - World map colored image, lanes image, and roads centres image (Pixels coordinates)
+        - map colored image is not used
+        - roads centres image: used to get waypoints from a graph as in waypointer.py by agents moving car using PID (like during training data collection). Waypoints are some shift from road centres.
+        - lanes image: used to get_lane_orientation by agents that collect data using PID for collision avoidance
+- Important functions:
+    - get_next_command:
+        Takes current node and target node, and gives next command
+        If current node changes and "away" from intersection, calls compute_route to get a route then _route_to_commands to get commands based on angles
+        If "far a way" from intersection or empty commands -> Follow Lane, else commands[0]
+        Calculates
+    - compute_route: creates astar map, called each step from get_next_command & get_shortest_path_distance (to check experiment timeout)
+    - _route_to_commands: loops the route cells, and based on angles creates list of commands
+------------------------------------------------------------------------------------------------------------------------
+Route Planner pseudo-code (The first 4 instructions are only during initialization):
+Imitation Learning paper authors rely on the following route planner (I write down the pseudo code of it), and our ITSC paper also used it. The inputs are car GPS and campus, and destination GPS, and returns the high level command that our model needs. The first 3 steps are done once during initialization.
+•  world_graph := create a directed weighted graph representing the town roads network, a node for every road turn (L-shape or intersection center)
+•  intersections_nodes := get nodes with more than 2 edges in world_graph
+•  planner_map := create_grid_map(world_graph) # a quantization of the real world of 1-way roads: connect nodes as roads, and all the other grid cells are marked as walls
+•  previous_cell := None, commands := []
+•  planner_map := add_walls(planner_map, car_GPS, car_campus) # add wall in the cell behind car and another in the cell after destination cell (because actual roads are 2-ways)
+•  car_GPS, destination_cell, source_cell := convert_gps_to_map_cells(planner_map, car_GPS, destination_GPS, source_cell)
+•  If car_cell != previous_cell AND distance_to_nearest_intersection(intersections_nodes, car_cell) > 1:
+    1.	route := compute_route(planner_map, car_cell, destination_cell)  # A* algorithm: route is list of cells from car_cell to destination_cell
+    2.	previous_cell = car_cell, commands := []
+    3.	for i=0 until i<route.Length:
+        1.	If cell route[i] is in intersections_nodes:
+            1.	signal := normalized cross product of "route[i] -> route[i+1]" vector and "route[i-1] -> route[i]"
+        2.	If signal < -0.1: commands.append(TRUN_RIGHT)
+        3.	Else if signal > 0.1: commands.append(TURN_LEFT)
+        4.	Else: commands.append(GO_STRAIGHT)
+•  If distance_to_nearest_intersection > 4 OR commands is empty:
+    1.	return LANE_FOLLOW
+•  Else:
+    1.	return commands[0]
+
+It has 2 bugs:
+1- A minor bug (not intended): at the start of each scenario, the route planner always gives LANE_FOLLOW command regardless of the car start GPS location, until the car travels a distance of 1 map cell (at most).
+2- 2- A serious bug: It happens when the car leaves an intersection (more than 1 cell away from its centre cell) while still not too far away from it (within 4 map cells distance), the route planner gives the command corresponding to the coming intersection which might be far away.
+    So I developed and used a simpler route planner algorithm instead shown below, the first 6 instructions are during initialization:
+
+This is our main loop pseudo-code:
+1.	Repeat until car reaches destination or times-out:
+    1.	cmd := get_command_from_planner(car_GPS)
+    2.	OGM := construct_ogm(sensor_data.LiDAR)
+    3.	ctrl:= run_our_neural_network(sensor_data, cmd)
+    4.	apply_controls(ctrl)
+

@@ -1,0 +1,27 @@
+% Putted earlier to appear in right place
+\begin{table*}[h] % table* means the table takes the two columns page
+	\centering
+    % \arrayrulecolor{white}  % For lines color
+	\caption{Road blockages avoidance benchmark: driving success rate average percentage}
+	\label{table:road_blockage_benchmark_success_rates}
+	\setlength{\tabcolsep}{0.1em} % for the horizontal padding
+    \renewcommand{\arraystretch}{1.2} % for the vertical padding
+	\begin{tabular}{|c|c||c|c|c|c|}
+		\hline
+		\multirow{3}{*}{Task}								& \multirow{3}{*}{Model}							            & \multicolumn{4}{c|}{\makecell{Percentages of average success\\rate and distance to goal}}	\\ \cline{3-6}
+															&													            & \multicolumn{2}{c|}{Training town}	& \multicolumn{2}{c|}{New town} 					\\ \cline{3-6}
+															&													            & \makecell{Training weathers}	    & \makecell{New weathers}	& \makecell{Training weathers}	& \makecell{New weathers} \\ \hline \hline
+
+\multirow{5}{*}{Navigation} & Camera model in \cite{dosovitskiy2017carla} & 56 & 50 & 32 & 40 \\ \cline{2-6}
+						    & Camera + LiDAR Model & 56 & 56 & 44 & 44 \\ \cline{2-6}
+						    & \makecell{Camera + LiDAR Model, with blockage avoidance algorithm,\\and no OGM steering rectification} & 82 & 80 & 66 & 68 \\ \cline{2-6}
+						    & \textbf{\makecell{Camera + LiDAR Model, with blockage avoidance algorithm}} & \textbf{94} & \textbf{96} & \textbf{72} & \textbf{74} \\ \hline \hline
+
+\multirow{5}{*}{\makecell{Dynamic\\Navigation}} & Camera model in \cite{dosovitskiy2017carla} & 55 & 48 & 29 & 32 \\ \cline{2-6}
+						                        & Camera + LiDAR Model & 49 & 50 & 45 & 44 \\ \cline{2-6}
+						                        & \makecell{Camera + LiDAR Model, with blockage avoidance algorithm,\\and no OGM steering rectification} & 68 & 68 & 48 & 46 \\ \cline{2-6}
+						                        & \textbf{\makecell{Camera + LiDAR Model, with blockage avoidance algorithm}} & \textbf{79} & \textbf{78} & \textbf{57} & \textbf{56} \\ \hline \hline
+	\end{tabular}
+\end{table*}
+% & \makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm,\\and no OGM steering rectification} & 68 & 68 & 42 & 36 \\ 
+% & \textbf{\makecell{Camera + LiDAR Model, with blockage avoidance algorithm}} & \textbf{73} & \textbf{78} & \textbf{54} & \textbf{56} \\ \hline \hline

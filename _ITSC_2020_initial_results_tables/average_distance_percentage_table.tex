@@ -1,0 +1,30 @@
+\begin{table*}[h] % table* means the table takes the two columns page
+	\centering
+    % \arrayrulecolor{white}  % For lines color
+	\caption{Average percentage of distance to goal travelled of our models benchmarked with state-of-the-art on different tasks and test conditions.}
+	\label{table:average_distance_percentage_in_different_tasks_results}
+	\setlength{\tabcolsep}{0.2em} % for the horizontal padding
+    \renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c||c|c|c|c|}
+		\hline
+		\multirow{3}{*}{Task}								& \multirow{3}{*}{Model}							            & \multicolumn{4}{c|}{\makecell{Average percentage of distance to goal\\travelled on different test conditions}}					\\ \cline{3-6}
+															&													            & \multicolumn{2}{c|}{Training town}	& \multicolumn{2}{c|}{New town} 						\\ \cline{3-6}
+															&													            & \makecell{Training\\weathers}	    & \makecell{New\\weathers}		& \makecell{Training\\weathers}	& \makecell{New\\weathers} 	\\ \hline \hline
+\multirow{3}{*}{Straight} & Camera, \cite{dosovitskiy2017carla} pre-trained & 97.24 & 98.38 & 90.38 & 92.70 \\ 
+& Camera (our data) & 98.37 & 98.33 & 95.74 & 96.65 \\ 
+& Camera + LiDAR & 98.32 & 98.32 & 96.68 & 96.68 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 98.36 & 98.36 & 96.64 & 96.64 \\ \hline \hline
+\multirow{3}{*}{\makecell{Single\\Turn}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 82.71 & 85.49 & 54.81 & 60.60 \\ 
+& Camera (our data) & 97.33 & 97.72 & 56.09 & 67.18 \\ 
+& Camera + LiDAR & 98.47 & 98.46 & 90.05 & 91.52 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 98.44 & 98.44 & 88.17 & 88.17 \\ \hline \hline
+\multirow{3}{*}{Navigation} & Camera, \cite{dosovitskiy2017carla} pre-trained & 88.61 & 89.34 & 9.68 & 45.37 \\ 
+& Camera (our data) & 91.13 & 92.46 & 16.92 & 16.93 \\ 
+& Camera + LiDAR & 92.70 & 92.71 & 76.95 & 76.86 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 96.02 & 96.04 & 98.30 & 98.30 \\ \hline \hline
+\multirow{3}{*}{\makecell{Dynamic\\Navigation}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 88.36 & 81.53 & 17.35 & 35.13 \\ 
+& Camera (our data) & 91.03 & 87.34 & 9.53 & 29.41 \\ 
+& Camera + LiDAR & 93.02 & 92.89 & 37.51 & 59.90 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 98.16 & 98.59 & 80.88 & 77.80 \\ \hline \hline
+	\end{tabular}
+\end{table*}

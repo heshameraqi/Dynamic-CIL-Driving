@@ -1,0 +1,34 @@
+\begin{table*}[h] % table* means the table takes the two columns page
+	\centering
+    % \arrayrulecolor{white}  % For lines color
+	\caption{Driving success rate average percentage, average percentage of distance to goal travelled is between parentheses.}
+	\label{table:success_rates_distance_to_goal_results}
+	\setlength{\tabcolsep}{0.1em} % for the horizontal padding
+    \renewcommand{\arraystretch}{1.0}% for the vertical padding
+	\begin{tabular}{|c|c||c|c|c|c|}
+		\hline
+		\multirow{3}{*}{Task}								& \multirow{3}{*}{Model}							            & \multicolumn{4}{c|}{\makecell{Percentages of average success rate and distance to goal}}	\\ \cline{3-6}
+															&													            & \multicolumn{2}{c|}{Training town}	& \multicolumn{2}{c|}{New town} 					\\ \cline{3-6}
+															&													            & Training weathers	    & New weathers	& Training weathers	& New weathers 	                \\ \hline \hline
+\multirow{4}{*}{Straight} & Camera, \cite{dosovitskiy2017carla} results & 95 (-) & 98 (-) & 97 (-) & 80 (-) \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 99 (97.24) & 100 (100.00) & 89 (90.38) & 92 (92.70) \\ 
+& Camera (our data) & 100 (100.00) & 100 (100.00) & 99 (95.74) & 100 (100.00) \\ 
+& Camera + LiDAR & 100 (100.00) & 100 (100.00) & 100 (100.00) & 100 (100.00) \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 100 (100.00) & 100 (100.00) & 100 (100.00) & 100 (100.00) \\ \hline \hline
+\multirow{4}{*}{\makecell{Single\\Turn}} & Camera, \cite{dosovitskiy2017carla} results & 89 (-) & 90 (-) & 59 (-) & 48 (-) \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 88 (82.71) & 94 (85.49) & 56 (54.81) & 74 (60.60) \\ 
+& Camera (our data) & 97 (97.33) & 98 (97.72) & 57 (56.09) & 72 (67.18) \\ 
+& Camera + LiDAR & 100 (100.00) & 100 (100.00) & 92 (90.05) & 92 (91.52) \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 100 (100.00) & 100 (100.00) & 92 (88.17) & 92 (88.17) \\ \hline \hline
+\multirow{4}{*}{Navigation} & Camera, \cite{dosovitskiy2017carla} results & 86 (-) & 84 (-) & 40 (-) & 44 (-) \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 78 (88.61) & 84 (89.34) & 35 (9.68) & 58 (45.37) \\ 
+& Camera (our data) & 87 (91.13) & 88 (92.46) & 33 (16.92) & 34 (16.93) \\ 
+& Camera + LiDAR & 92 (92.70) & 92 (92.71) & 68 (76.95) & 68 (76.86) \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 96 (96.02) & 96 (96.04) & 100 (100.00) & 100 (100.00) \\ \hline \hline
+\multirow{4}{*}{\makecell{Dynamic\\Navigation}} & Camera, \cite{dosovitskiy2017carla} results & 83 (-) & 82 (-) & 38 (-) & 42 (-) \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 80 (88.36) & 74 (81.53) & 28 (17.35) & 54 (35.13) \\ 
+& Camera (our data) & 84 (91.03) & 82 (87.34) & 26 (9.53) & 30 (29.41) \\ 
+& Camera + LiDAR & 86 (93.02) & 86 (92.89) & 53 (37.51) & 64 (59.90) \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 94 (98.16) & 96 (98.59) & 89 (80.88) & 88 (77.80) \\ \hline \hline
+	\end{tabular}
+\end{table*}

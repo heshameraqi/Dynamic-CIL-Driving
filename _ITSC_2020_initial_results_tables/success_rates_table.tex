@@ -1,0 +1,34 @@
+\begin{table*}[h] % table* means the table takes the two columns page
+	\centering
+    % \arrayrulecolor{white}  % For lines color
+	\caption{Autonomous Driving  success rate average percentage of our models benchmarked with state-of-the-art on different tasks and test conditions.}
+	\label{table:success_rates_in_different_tasks_results}
+	\setlength{\tabcolsep}{0.2em} % for the horizontal padding
+    \renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c||c|c|c|c|}
+		\hline
+		\multirow{3}{*}{Task}								& \multirow{3}{*}{Model}							            & \multicolumn{4}{c|}{\makecell{Average success rate percentage\\on different test conditions}}					\\ \cline{3-6}
+															&													            & \multicolumn{2}{c|}{Training town}	& \multicolumn{2}{c|}{New town} 						\\ \cline{3-6}
+															&													            & \makecell{Training\\weathers}	    & \makecell{New\\weathers}		& \makecell{Training\\weathers}	& \makecell{New\\weathers} 	\\ \hline \hline
+\multirow{4}{*}{Straight} & Camera, \cite{dosovitskiy2017carla} results & 95 & 98 & 97 & 80 \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 99 & 100 & 89 & 92 \\ 
+& Camera (our data) & 100 & 100 & 99 & 100 \\ 
+& Camera + LiDAR & 100 & 100 & 100 & 100 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} &  100 & 100 & 100 & 100 \\ \hline \hline
+\multirow{4}{*}{\makecell{Single\\Turn}} & Camera, \cite{dosovitskiy2017carla} results & 89 & 90 & 59 & 48 \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 88 & 94 & 56 & 74 \\ 
+& Camera (our data) & 97 & 98 & 57 & 72 \\ 
+& Camera + LiDAR & 100 & 100 & 92 & 92 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} &  100 & 100 & 92 & 92 \\ \hline \hline
+\multirow{4}{*}{Navigation} & Camera, \cite{dosovitskiy2017carla} results & 86 & 84 & 40 & 44 \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 78 & 84 & 35 & 58 \\ 
+& Camera (our data) & 87 & 88 & 33 & 34 \\ 
+& Camera + LiDAR & 92 & 92 & 68 & 68 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} &  96 & 96 & 100 & 100 \\ \hline \hline
+\multirow{4}{*}{\makecell{Dynamic\\Navigation}} & Camera, \cite{dosovitskiy2017carla} results & 83 & 82 & 38 & 42 \\ 
+& Camera, \cite{dosovitskiy2017carla} pre-trained & 80 & 74 & 28 & 54 \\ 
+& Camera (our data) & 84 & 82 & 26 & 30 \\ 
+& Camera + LiDAR & 86 & 86 & 53 & 64 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} &  94 & 96 & 89 & 88 \\ \hline \hline
+	\end{tabular}
+\end{table*}

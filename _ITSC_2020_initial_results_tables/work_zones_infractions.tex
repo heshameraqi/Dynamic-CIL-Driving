@@ -1,0 +1,42 @@
+% Putted earlier to appear in right place
+\begin{table*}[h] % table* means the table takes the two columns page
+	\def\arraystretch{1.5}
+	\centering
+    % \arrayrulecolor{white}  % For lines color
+	\caption{Road blockages avoidance benchmark: the average number of kilometers traveled before an infraction}
+	\label{table:road_blockage_benchmark_collisions_in_different_tasks_results}
+	\setlength{\tabcolsep}{0.1em} % for the horizontal padding
+    \renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c||c|c|c|c|}
+	\hline
+	\multirow{3}{*}{Infractions}         	& \multirow{3}{*}{Model}	& \multicolumn{4}{c|}{Average kilometers traveled before an infraction}					\\ \cline{3-6}
+											&							& \multicolumn{2}{c|}{Same training town}	& \multicolumn{2}{c|}{New town} 						\\ \cline{3-6}
+											&							& Training weather	& New weathers		& Training weather	& New weathers 	\\ \hline \hline
+											
+	\multirow{7}{*}{\makecell{Collision\\to a\\Pedestrian}} & Camera model in \cite{dosovitskiy2017carla} & 7.31 & \textbf{20.09} & 10.54 & 6.01 \\ \cline{2-6}
+															& Camera + LiDAR Model & \textbf{8.7} & 17.53 & \textbf{11.54} & 6.36 \\ \cline{2-6}
+															& \makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm,\\and no OGM steering rectification} & 6.85 & 9.19 & 9.25 & \textbf{6.67} \\ \cline{2-6}
+															& \textbf{\makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm}} & 7.43 & 10.39 & 4.25 & 5.0 \\ \hline \hline
+															
+	\multirow{7}{*}{\makecell{Collision\\to a\\Vehicle}} & Camera model in \cite{dosovitskiy2017carla} & 0.56 & 1.44 & 0.27 & 0.2 \\ \cline{2-6}
+														 & Camera + LiDAR Model & \textbf{1.29} & 1.17 & \textbf{2.56} & \textbf{4.24} \\ \cline{2-6}
+														 & \makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm,\\and no OGM steering rectification} & 1.01 & 1.2 & 0.69 & 0.95 \\ \cline{2-6}
+														 & \textbf{\makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm}} & 1.08 & \textbf{1.83} & 1.06 & 0.79 \\ \hline \hline
+														 
+	\multirow{7}{*}{\makecell{Collision\\to a\\Static Object}} & Camera model in \cite{dosovitskiy2017carla} & 0.58 & 0.56 & 0.29 & 0.27 \\ \cline{2-6}
+															   & Camera + LiDAR Model & 0.6 & 0.55 & 0.32 & 0.34 \\ \cline{2-6}
+															   & \makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm,\\and no OGM steering rectification} & 1.4 & 1.62 & 0.35 & 0.35 \\ \cline{2-6}
+															   & \textbf{\makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm}} & \textbf{2.05} & \textbf{1.73} & \textbf{0.69} & \textbf{0.52} \\ \hline \hline
+															   
+	\multirow{7}{*}{\makecell{Going\\Outside\\of Road}} & Camera model in \cite{dosovitskiy2017carla} & 3.66 & \textbf{20.09} & 0.81 & 0.75 \\ \cline{2-6}
+														& Camera + LiDAR Model & \textbf{34.81} & 17.53 & \textbf{2.1} & \textbf{2.12} \\ \cline{2-6}
+														& \makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm,\\and no OGM steering rectification} & 4.57 & 5.51 & 1.16 & 1.21 \\ \cline{2-6}
+														& \textbf{\makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm}} & 9.91 & 10.39 & 1.65 & 1.36 \\ \hline \hline
+														
+	\multirow{7}{*}{\makecell{Invading the\\Opposite Lane}} & Camera model in \cite{dosovitskiy2017carla} & \textbf{14.63} & 10.05 & 1.92 & \textbf{3.01} \\ \cline{2-6}
+															& Camera + LiDAR Model & 3.87 & 4.38 & \textbf{3.3} & 2.12 \\ \cline{2-6}
+															& \makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm,\\and no OGM steering rectification} & 13.7 & 9.19 & 1.07 & 1.21 \\ \cline{2-6}
+															& \textbf{\makecell{Camera + LiDAR Model,\\with blockage avoidance algorithm}} & 7.43 & \textbf{10.39} & 1.49 & 1.67 \\ \hline \hline
+	\end{tabular}
+\end{table*}
+% & Camera + LiDAR Model & >34.81 & 17.53 & 2.1 & 2.12 \\ \cline{2-6}

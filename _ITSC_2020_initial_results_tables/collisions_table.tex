@@ -1,0 +1,35 @@
+\begin{table*}[h] % table* means the table takes the two columns page
+	\def\arraystretch{1.5}
+	\centering
+    % \arrayrulecolor{white}  % For lines color
+	\caption{The average number of kilometers traveled before an infraction.}
+	\label{table:collisions_in_different_tasks_results}
+	\setlength{\tabcolsep}{0.1em} % for the horizontal padding
+    \renewcommand{\arraystretch}{1.0}% for the vertical padding
+	\begin{tabular}{|c|c||c|c|c|c|}
+	\hline
+	\multirow{3}{*}{Infractions}         	& \multirow{3}{*}{Model}	& \multicolumn{4}{c|}{Average kilometers traveled before an infraction}					\\ \cline{3-6}
+											&							& \multicolumn{2}{c|}{Same training town}	& \multicolumn{2}{c|}{New town} 						\\ \cline{3-6}
+											&							& Training weather	& New weathers		& Training weather	& New weathers 	\\ \hline \hline
+\multirow{4}{*}{\makecell{Collision\\to a\\Pedestrian}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 7.15 & 19.48 & 0.99 & 2.18 \\ 
+& Camera (our data) & 6.08 & 5.32 & 1.49 & 3.14 \\ 
+& Camera + LiDAR & 60.96 & 15.76 & 25.01 & 12.60 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 32.02 & 10.79 & 5.50 & 16.15 \\ \hline \hline
+\multirow{4}{*}{\makecell{Collision\\to a\\Vehicle}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 1.35 & 0.89 & 0.18 & 0.17 \\ 
+& Camera (our data) & 1.59 & 1.33 & 0.44 & 0.70 \\ 
+& Camera + LiDAR & 1.13 & 1.09 & 0.51 & 0.84 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 0.96 & 1.20 & 1.83 & 2.02 \\ \hline \hline
+\multirow{4}{*}{\makecell{Collision\\to a\\Static Object}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 5.50 & 5.56 & 0.29 & 0.85 \\ 
+& Camera (our data) & 5.15 & 2.66 & 0.26 & 0.33 \\ 
+& Camera + LiDAR & 3.05 & 3.15 & 0.54 & 0.90 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 1.94 & 2.70 & 1.03 & 1.24 \\ \hline \hline
+\multirow{4}{*}{\makecell{Going\\Outside\\of Road}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 14.30 & 12.98 & 0.45 & 0.90 \\ 
+& Camera (our data) & 11.15 & 7.97 & 0.59 & 0.79 \\ 
+& Camera + LiDAR & 10.16 & 10.50 & 0.96 & 1.57 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 64.04 & 32.37 & 2.75 & 3.23 \\ \hline \hline
+\multirow{4}{*}{\makecell{Invading the\\Opposite Lane}} & Camera, \cite{dosovitskiy2017carla} pre-trained & 4.77 & 9.74 & 0.51 & 1.69 \\ 
+& Camera (our data) & 13.38 & 15.95 & 0.77 & 0.90 \\ 
+& Camera + LiDAR & 8.71 & 10.50 & 0.93 & 1.05 \\ 
+& \textbf{Camera + LiDAR + Our Route Planner} & 21.35 & 32.37 & 11.00 & 16.15 \\ \hline \hline
+	\end{tabular}
+\end{table*}
