@@ -3,21 +3,20 @@
 > **Cite our Work:**
 > 
 > Hesham M. Eraqi, Mohamed N. Moustafa, Jens Honer. Dynamic Conditional Imitation Learning for Autonomous Driving. IEEE Transactions on Intelligent Transportation Systems, 2022.
-
 ![Added Work Zones on CARLA](imgs/Work%20Zones.png?raw=true)
 
-A real-time video showing an example scenario visualizing our system driving a car in the test town. The ego-car detects two road blockages and dynamically estimate and follows new routes to eventually reach the designation successfully, better watched in Full-HD:
-
-[![Video showing D-CIL method in action in test town](imgs/Results%20Video%20Thumbnail.png?raw=true)](https://www.youtube.com/watch?v=v3DaKJL-HCQ)
-
-### Table of Contents:
+### Contents:
+- [Demo Video](#Demo-Video)
 - [Summary](#Summary)
-- [Table of Contents](#Table-of-Contents)
 - [To use the code](#To-Use-The-Code)
 - [Backups](#Backups)
 - [Environment Setup](#Environment-Setup)
 - [Notes](#Notes)
-  
+
+### Demo Video:
+A real-time video showing an example scenario visualizing our system driving a car in the test town. The ego-car detects two road blockages and dynamically estimate and follows new routes to eventually reach the designation successfully, better watched in Full-HD:
+[![Video showing D-CIL method in action in test town](imgs/Results%20Video%20Thumbnail.png?raw=true)](https://www.youtube.com/watch?v=v3DaKJL-HCQ)
+
 ### Summary:
 An extension to the Conditional Imitation Learning approach for Autonomous Driving is presented to tackle the challenges of lack of generalization, inconsistency against varying weather conditions, and inability to avoid unexpected static road blockages. The laser scanner input is fused with the regular camera streams, at the features level of the proposed Deep Learning model, to overcome the generalization and consistency challenges. A new efficient Occupancy Grid Mapping method is introduced, with improved runtime performance, memory utilization, and map accuracy, along with new algorithms for road blockages avoidance and global route planning to allow for dynamically detecting partial and full road blockages and guiding the vehicle to another route to reach the destination. Experimental results on CARLA simulator urban driving benchmark demonstrated the effectiveness of the proposed methods.
 
