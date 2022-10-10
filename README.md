@@ -3,6 +3,7 @@
 > **Cite our Work:**
 > 
 > Hesham M. Eraqi, Mohamed N. Moustafa, Jens Honer. Dynamic Conditional Imitation Learning for Autonomous Driving. IEEE Transactions on Intelligent Transportation Systems, 2022.
+
 ![Added Work Zones on CARLA](imgs/Work%20Zones.png?raw=true)
 
 ## Contents:
@@ -15,6 +16,7 @@
 
 ## Demo Video:
 A real-time video showing an example scenario visualizing our system driving a car in the test town. The ego-car detects two road blockages and dynamically estimate and follows new routes to eventually reach the designation successfully, better watched in Full-HD:
+
 [![Video showing D-CIL method in action in test town](imgs/Results%20Video%20Thumbnail.png?raw=true)](https://www.youtube.com/watch?v=v3DaKJL-HCQ)
 
 ## Summary:
