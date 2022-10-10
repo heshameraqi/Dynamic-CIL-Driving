@@ -11,12 +11,15 @@ A real-time video showing an example scenario visualizing our system driving a c
 [![Video showing D-CIL method in action in test town](imgs/Results%20Video%20Thumbnail.png?raw=true)](https://www.youtube.com/watch?v=v3DaKJL-HCQ)
 
 ### Table of Contents:
-- [int-end-to-end-ad](#int-end-to-end-ad)
-  * [Table of Contents](#Table-of-Contents)
-  * [To use the code](#To-Use-The-Code)
-  * [Backups](#Backups)
-  * [Environment Setup](#Environment-Setup)
-  * [Notes](#Notes)
+- [Summary](#Summary)
+- [Table of Contents](#Table-of-Contents)
+- [To use the code](#To-Use-The-Code)
+- [Backups](#Backups)
+- [Environment Setup](#Environment-Setup)
+- [Notes](#Notes)
+  
+### Summary:
+An extension to the Conditional Imitation Learning approach for Autonomous Driving is presented to tackle the challenges of lack of generalization, inconsistency against varying weather conditions, and inability to avoid unexpected static road blockages. The laser scanner input is fused with the regular camera streams, at the features level of the proposed Deep Learning model, to overcome the generalization and consistency challenges. A new efficient Occupancy Grid Mapping method is introduced, with improved runtime performance, memory utilization, and map accuracy, along with new algorithms for road blockages avoidance and global route planning to allow for dynamically detecting partial and full road blockages and guiding the vehicle to another route to reach the destination. Experimental results on CARLA simulator urban driving benchmark demonstrated the effectiveness of the proposed methods.
 
 ## To use the code:
 1. Download and unzip the needed CARLA version(s) from the [Backups section](#Backups) below.
