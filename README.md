@@ -2,7 +2,7 @@
 
 > **Cite our Work:**
 > 
-> Hesham M. Eraqi, Mohamed N. Moustafa, Jens Honer. Dynamic Conditional Imitation Learning for Autonomous Driving. IEEE Transactions on Intelligent Transportation Systems, 2022.
+> Hesham M. Eraqi, Mohamed N. Moustafa, Jens Honer. Dynamic Conditional Imitation Learning for Autonomous Driving. IEEE Transactions on Intelligent Transportation Systems, 2022. https://ieeexplore.ieee.org/document/9928072
 
 ![Added Work Zones on CARLA](imgs/Work%20Zones.png?raw=true)
 
